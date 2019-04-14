@@ -37,13 +37,11 @@ class FusionEKF {
 
   // previous timestamp
   long long previous_timestamp_;
-<<<<<<< HEAD
+
   
     //set the acceleration noise components
   float noise_ax;
   float noise_ay;
-=======
->>>>>>> 5b5bda651947049ce0297a9a05090ac3cf1332a0
 
   // tool object used to compute Jacobian and RMSE
   Tools tools;

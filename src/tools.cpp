@@ -4,6 +4,9 @@
 using Eigen::VectorXd;
 using Eigen::MatrixXd;
 using std::vector;
+using std::cout;
+using std::endl;
+
 
 Tools::Tools() {}
 
@@ -14,7 +17,6 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
   /**
    * TODO: Calculate the RMSE here.
    */
-<<<<<<< HEAD
   
    //Intialize the rmse
   VectorXd rmse(4);
@@ -43,8 +45,7 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
   rmse = rmse.array().sqrt();
 
   return rmse;
-=======
->>>>>>> 5b5bda651947049ce0297a9a05090ac3cf1332a0
+
 }
 
 MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
@@ -52,7 +53,6 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
    * TODO:
    * Calculate a Jacobian here.
    */
-<<<<<<< HEAD
   
   MatrixXd Hj(3,4);
 
@@ -81,6 +81,4 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
       py*(vx*py - vy*px) / c3, px*(px*vy - py*vx) / c3, px / c2, py / c2;
 
   return Hj;
-=======
->>>>>>> 5b5bda651947049ce0297a9a05090ac3cf1332a0
 }
