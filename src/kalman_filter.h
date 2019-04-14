@@ -45,6 +45,11 @@ class KalmanFilter {
    * @param z The measurement at k+1
    */
   void UpdateEKF(const Eigen::VectorXd &z);
+<<<<<<< HEAD
+  
+  void UpdateMeasurement(const Eigen::VectorXd &y);
+=======
+>>>>>>> 5b5bda651947049ce0297a9a05090ac3cf1332a0
 
   // state vector
   Eigen::VectorXd x_;

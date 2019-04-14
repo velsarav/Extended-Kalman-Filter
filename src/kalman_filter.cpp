@@ -26,16 +26,82 @@ void KalmanFilter::Predict() {
   /**
    * TODO: predict the state
    */
+<<<<<<< HEAD
+   x_ = F_ * x_;
+  MatrixXd Ft = F_.transpose();
+  P_ = F_ * P_ * Ft + Q_;
+=======
+>>>>>>> 5b5bda651947049ce0297a9a05090ac3cf1332a0
 }
 
 void KalmanFilter::Update(const VectorXd &z) {
   /**
    * TODO: update the state by using Kalman Filter equations
    */
+<<<<<<< HEAD
+    VectorXd z_pred = H_ * x_;
+  VectorXd y = z - z_pred;
+  
+  UpdateMeasurement(y);
+
+=======
+>>>>>>> 5b5bda651947049ce0297a9a05090ac3cf1332a0
 }
 
 void KalmanFilter::UpdateEKF(const VectorXd &z) {
   /**
    * TODO: update the state by using Extended Kalman Filter equations
    */
+<<<<<<< HEAD
+  
+   float px = x_[0];
+  float py = x_[1];
+  float vx = x_[2];
+  float vy = x_[3];
+
+  //Checking the value is not zero
+  if(px == 0. && py == 0.)
+    return;
+  
+  float rho = sqrt(px*px + py*py);
+  float theta = atan2(py, px);
+  
+  //Checking the value is not zero
+  if (rho < 0.0001) {
+    rho = 0.0001;
+  } 
+  float rho_dot = (px*vx + py*vy) / rho;
+  
+
+  //Finding h(x)
+  VectorXd h = VectorXd(3); // h(x_)
+  h << rho, theta, rho_dot;
+  VectorXd y = z-h;
+
+  //Normalize the angle between -pi to pi
+  while (y[1] < -M_PI)
+    y[1] += 2 * M_PI;
+  while (y[1] > M_PI)
+    y[1] -= 2 * M_PI;
+
+  UpdateMeasurement(y);
+
+}
+
+void KalmanFilter::UpdateMeasurement(const VectorXd &y) {
+  //Mesaurement updates
+  MatrixXd Ht = H_.transpose();
+  MatrixXd PHt = P_ * Ht;
+  MatrixXd S = H_ * P_ * Ht + R_;
+  MatrixXd Si = S.inverse();
+  
+  MatrixXd K = PHt * Si;
+  
+  //New estimate
+  x_ = x_ + (K * y);
+  int x_size = x_.size();
+  MatrixXd I = MatrixXd::Identity(x_size, x_size);
+  P_ = (I - K * H_) * P_;
+=======
+>>>>>>> 5b5bda651947049ce0297a9a05090ac3cf1332a0
 }
