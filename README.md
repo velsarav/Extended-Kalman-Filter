@@ -18,3 +18,6 @@ Please refer to the base project [README](https://github.com/udacity/CarND-Exten
 ### Accuracy
 
 ![alt text][image1]
+
+### Reference
+[EKF](https://medium.com/intro-to-artificial-intelligence/extended-kalman-filter-simplified-udacitys-self-driving-car-nanodegree-46d952fce7a3)
