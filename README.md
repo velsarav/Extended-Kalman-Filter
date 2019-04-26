@@ -15,11 +15,22 @@ Please refer to the base project [README](https://github.com/udacity/CarND-Exten
 
 [image1]: ./Docs/RMSE_result.png "RMSE value"
 [image2]: ./Docs/Sensor_properties.png "Sensor properties"
+[image3]: ./Docs/Estimation.png "Estimation"
+[image4]: ./Docs/Prediction.png "Prediction"
+[image5]: ./Docs/Update.png "Update"
+
+
 
 ### Sensor Fusion
-Different sensor have different properties which helps to provide different types of information about the tracked object position with differing accuracies especially in different weather condition.
+Sensor such as Lidar and Radar have different properties which helps to provide different types of information about the tracked object position with differing accuracies especially in different weather condition.
 
 ![alt text][image2]
+
+The techniques used to merge information from different sensor is called sensor fusion. 
+
+Next step we are going to detect a bicycle that travels around the autonomous vehicle using the simulated lidar and radar measurement.
+
+Kalman filter will be used to track the bicycle's position and velocity using lidar and radar measurement.
 
 ### Kalman Filter
 The Kalman filter estimates the value of variable by updating its estimate as measurement data is collected filtering out the noise. Kalman filter models the state uncertainty using Gaussians and it is capable of making accurate estimates with just few data points.
@@ -29,12 +40,30 @@ measurement update produced by sensor measurements followed by a state predictio
 
 ![alt text][image3]
 
+#### Kalman Filter Algorithm steps
+First measurement - Filter receives the initial measurement of the bicycle's position relative to the car. The measurement comes from radar or lidar sensor.
+
+Initialisation - Initialize state and covariance matrices of the filter based on  the first measurement of bicycle's position.
+
+Then the car will receive another sensor measurement after a time period Δt.
+
+State prediction - Will predict where the bicycle will be after time Δt. One basic way to predict the bicycle location after Δt is to assume the bicycle's velocity is constant; thus the bicycle will have moved velocity * Δt.
+
+![alt text][image4]
+
+Measurement update - Compares the "predicted" location with the sensor measurement. The predicted location and measured location will provide a updated location. The Kalman filter will put more weight on either the predicted location or the measured location depending on the uncertainty of each value.
+
+![alt text][image5]
+
+Then the car will receive another sensor measurement after a time period Δt. The algorithm then does another predict and update step.
+
+
 ### Extended Kalman Filter
 KF assumes the motion and measurement models are linear and that the state space can be represented by a unimodal Gaussian distribution. Self-driving car will execute non linear motion. Non linear actions will result in non-Gaussian posterior distributions that cannot be properly modeled by a closed form equation. 
 
 EKF approximates motion and measurements to linear functions locally (i.e. by using the first two terms of a Taylor series) to compute a best Gaussian approximation of the posterior covariance. This trick allows EKF to be applied efficiently to a non-linear problems.
 
-![alt text][image4]
+![alt text][image6]
 
 ### Accuracy
 
