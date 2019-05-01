@@ -16,7 +16,7 @@ Please refer to the base project [README](https://github.com/udacity/CarND-Exten
 [image1]: ./Docs/RMSE_result.png "RMSE value"
 [image2]: ./Docs/Sensor_properties.png "Sensor properties"
 [image3]: ./Docs/Estimation.png "Estimation"
-[image4]: ./Docs/Prediction.png "Prediction"
+[image4]: ./Docs/Prediction_1.png "Prediction"
 [image5]: ./Docs/Update.png "Update"
 
 
@@ -51,11 +51,38 @@ State prediction - Will predict where the bicycle will be after time Δt. One ba
 
 ![alt text][image4]
 
+Equation (1) provides the prediction calculation.
+
+The bicycle didn't maintain the exact same velocity. May be the bicycle changed the direction, accelerated or decelerated. So when we predict the position after Δt, our uncertainty increases. Equation (2) represents this increase in uncertainty. 
+
+
+x --> mean state vector. 
+
+P --> state covariance matrix, which contains the information about the uncertainty of the object's position and velocity. You can think of it as containing standard deviations.
+
+Q --> process covariance matrix. It is a covariance matrix associated with the noise in states. 
+
+F --> transition Matrix (deals with time steps and constant velocities)
+
+The notation u ∼ N(0,Q) defines the process noise as a gaussian distribution with mean zero and covariance Q.
+
 Measurement update - Compares the "predicted" location with the sensor measurement. The predicted location and measured location will provide a updated location. The Kalman filter will put more weight on either the predicted location or the measured location depending on the uncertainty of each value.
+
+We are going to obtain the data from Laser measurements.
+
+*Lidar Measurements* allows us to get the current position but not its velocity. On the other hand is have more resolution. 
 
 ![alt text][image5]
 
-Then the car will receive another sensor measurement after a time period Δt. The algorithm then does another predict and update step.
+Above equation helps us to find x and P
+
+z --> Measurement vector. For a lidar sensor, the z vector contains the *position - x* and *position - y* measurements.
+
+H --> matrix that projects your belief about the bicycle's current state into the measurement space of the sensor. For lidar, this is a fancy way of saying that we discard velocity information from the state variable since the lidar sensor only measures position: The state vector x contains information about [px​,py​,vx​,vy​] whereas the z vector will only contain [px,py]. Multiplying Hx allows us to compare x, our belief, with z, the sensor measurement.
+
+R --> Covariance matrix of the measurement noise.
+
+
 
 
 ### Extended Kalman Filter
