@@ -16,8 +16,9 @@ Please refer to the base project [README](https://github.com/udacity/CarND-Exten
 [image1]: ./Docs/RMSE_result.png "RMSE value"
 [image2]: ./Docs/Sensor_properties.png "Sensor properties"
 [image3]: ./Docs/Estimation.png "Estimation"
-[image4]: ./Docs/Prediction_1.png "Prediction"
-[image5]: ./Docs/Update.png "Update"
+[image4]: ./Docs/KF.png "KF"
+[image5]: ./Docs/Prediction_1.png "Prediction"
+[image6]: ./Docs/Update_1.png "Update"
 
 
 
@@ -41,6 +42,9 @@ measurement update produced by sensor measurements followed by a state predictio
 ![alt text][image3]
 
 #### Kalman Filter Algorithm steps
+
+![alt text][image4]
+
 First measurement - Filter receives the initial measurement of the bicycle's position relative to the car. The measurement comes from radar or lidar sensor.
 
 Initialisation - Initialize state and covariance matrices of the filter based on  the first measurement of bicycle's position.
@@ -49,7 +53,7 @@ Then the car will receive another sensor measurement after a time period Δt.
 
 State prediction - Will predict where the bicycle will be after time Δt. One basic way to predict the bicycle location after Δt is to assume the bicycle's velocity is constant; thus the bicycle will have moved velocity * Δt.
 
-![alt text][image4]
+![alt text][image5]
 
 Equation (1) provides the prediction calculation.
 
@@ -68,19 +72,27 @@ The notation u ∼ N(0,Q) defines the process noise as a gaussian distribution w
 
 Measurement update - Compares the "predicted" location with the sensor measurement. The predicted location and measured location will provide a updated location. The Kalman filter will put more weight on either the predicted location or the measured location depending on the uncertainty of each value.
 
-We are going to obtain the data from Laser measurements.
+We are going to obtain the data from Lidar measurements.
 
 *Lidar Measurements* allows us to get the current position but not its velocity. On the other hand is have more resolution. 
 
-![alt text][image5]
+![alt text][image6]
 
-Above equation helps us to find x and P
+Use the real measurement z to update the predicted state x' by a scaling factor called the Kalman Gain proportional to the error between the measurement and the predicted state.
+
+Equation (3) get the error value y (also called the residual) based on z and H where
 
 z --> Measurement vector. For a lidar sensor, the z vector contains the *position - x* and *position - y* measurements.
 
 H --> matrix that projects your belief about the bicycle's current state into the measurement space of the sensor. For lidar, this is a fancy way of saying that we discard velocity information from the state variable since the lidar sensor only measures position: The state vector x contains information about [px​,py​,vx​,vy​] whereas the z vector will only contain [px,py]. Multiplying Hx allows us to compare x, our belief, with z, the sensor measurement.
 
+Equation (4), (5), (6) and (7) provides the Kalman gain.
+
 R --> Covariance matrix of the measurement noise.
+S --> Projection of the process uncertainty into the measurement space.
+
+Equation (6) update the predict state and Equation (7) update the process uncertainty.
+
 
 
 
