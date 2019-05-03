@@ -29,6 +29,8 @@ Sensor such as Lidar and Radar have different properties which helps to provide 
 
 The techniques used to merge information from different sensor is called sensor fusion. 
 
+![alt text][image7]
+
 Next step we are going to detect a bicycle that travels around the autonomous vehicle using the simulated lidar and radar measurement.
 
 Kalman filter will be used to track the bicycle's position and velocity using lidar and radar measurement.
@@ -93,8 +95,6 @@ S --> Projection of the process uncertainty into the measurement space.
 
 Equation (6) update the predict state and Equation (7) update the process uncertainty.
 
-
-![alt text][image7]
 
 
 ### Extended Kalman Filter
