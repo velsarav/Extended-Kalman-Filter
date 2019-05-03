@@ -19,7 +19,7 @@ Please refer to the base project [README](https://github.com/udacity/CarND-Exten
 [image4]: ./Docs/KF.png "KF"
 [image5]: ./Docs/Prediction_1.png "Prediction"
 [image6]: ./Docs/Update_1.png "Update"
-
+[image7]: ./Docs/SensorFusion.png "Fusion"
 
 
 ### Sensor Fusion
@@ -94,7 +94,7 @@ S --> Projection of the process uncertainty into the measurement space.
 Equation (6) update the predict state and Equation (7) update the process uncertainty.
 
 
-
+![alt text][image7]
 
 
 ### Extended Kalman Filter
@@ -102,7 +102,7 @@ KF assumes the motion and measurement models are linear and that the state space
 
 EKF approximates motion and measurements to linear functions locally (i.e. by using the first two terms of a Taylor series) to compute a best Gaussian approximation of the posterior covariance. This trick allows EKF to be applied efficiently to a non-linear problems.
 
-![alt text][image6]
+
 
 ### Accuracy
 
