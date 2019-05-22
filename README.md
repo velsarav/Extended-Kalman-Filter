@@ -189,7 +189,11 @@ The project rubric on accuracy :
 
 **Your algorithm will be run against Dataset 1 in the Udacity simulator which is the same as "data/obj_pose-laser-radar-synthetic-input.txt" in the repository. We'll collect the positions that your algorithm outputs and compare them to ground truth data. Your px, py, vx, and vy RMSE should be less than or equal to the values [.11, .11, 0.52, 0.52].**
 
-After compiling the code following is the accuracy test result.
+## C++ compilation
+Able to install uWebSocketIO in [Windows 10 Bash on Ubuntu](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/) and run the [Term 2 Simulator](https://github.com/udacity/self-driving-car-sim/releases)
+
+
+Following is the accuracy test result.
 
 ![alt text][image1]
 
