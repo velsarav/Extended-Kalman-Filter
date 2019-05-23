@@ -193,7 +193,7 @@ The project rubric on accuracy :
 Able to install uWebSocketIO in [Windows 10 Bash on Ubuntu](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/) and run the [Term 2 Simulator](https://github.com/udacity/self-driving-car-sim/releases)
 
 
-Following is the accuracy test result.
+Following is the accuracy test result from Udacity reviewer.
 
 ![alt text][image1]
 
